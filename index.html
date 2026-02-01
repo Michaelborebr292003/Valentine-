@@ -8,17 +8,11 @@
         body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #fce4ec; font-family: sans-serif; overflow: hidden; }
         .card { background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; width: 300px; }
         h1 { color: #d81b60; font-size: 1.2rem; margin: 20px 0; }
-        
-        /* This keeps the first two buttons neat */
         .btn-container { display: flex; justify-content: center; gap: 15px; position: relative; height: 50px; }
-        
-        button { padding: 10px 25px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+        button { padding: 10px 25px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; }
         #yesBtn { background-color: #ff4081; color: white; z-index: 10; }
-        
-        /* Styling for all No buttons */
-        .runaway { background-color: #eee; color: #333; position: absolute; white-space: nowrap; }
-        
-        img { width: 200px; border-radius: 10px; }
+        .runaway { background-color: #eee; color: #333; position: absolute; transition: 0.1s; }
+        img { width: 220px; border-radius: 10px; }
     </style>
 </head>
 <body>
@@ -31,8 +25,6 @@
             <button class="runaway" style="left: 160px;">No</button>
             <button class="runaway" style="left: 160px;">No</button>
             <button class="runaway" style="left: 160px;">No</button>
-            <button class="runaway" style="left: 160px;">No</button>
-            <button class="runaway" style="left: 160px;">No</button>
         </div>
     </div>
 
@@ -42,25 +34,23 @@
         const gif = document.getElementById('main-gif');
         const noButtons = document.querySelectorAll('.runaway');
 
-        // Make every "No" button move independently
         noButtons.forEach(button => {
-            button.addEventListener('mouseover', moveButton);
             button.addEventListener('touchstart', moveButton);
+            button.addEventListener('mouseover', moveButton);
         });
 
         function moveButton(e) {
             const btn = e.target;
-            // This moves them anywhere on the screen
             const x = Math.random() * (window.innerWidth - btn.offsetWidth);
             const y = Math.random() * (window.innerHeight - btn.offsetHeight);
-            
-            btn.style.position = 'fixed'; // Breaks them out of the card to fly around
+            btn.style.position = 'fixed';
             btn.style.left = x + 'px';
             btn.style.top = y + 'px';
         }
 
         yesBtn.addEventListener('click', () => {
-            header.innerHTML = "YAY! 💖🎉😆🏅";
+            header.innerHTML = "YAY! I love you Bani! 💖🎉";
+            // THIS SWAPS THE GIF ONLY AFTER THE CLICK
             gif.src = "https://media.giphy.com/media/26ufdipLchakBUZi8/giphy.gif"; 
             noButtons.forEach(btn => btn.style.display = 'none');
         });
